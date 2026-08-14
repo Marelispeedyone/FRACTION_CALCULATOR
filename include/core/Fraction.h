@@ -21,6 +21,7 @@ class Fraction{
         
         double toDouble() const;
         std::string normalFormat() const;
+        // Only if numerator > denominator
         std::string mixedFormat() const;
 
         Fraction parser(std::string expression);
@@ -33,8 +34,8 @@ class Fraction{
         void operator*=(int number);
         void operator/=(Fraction fraction);
         void operator/=(int number);
-        void operator=(Fraction fraction);
-        void operator=(int number);
+        void operator=(Fraction fraction); //
+        void operator=(int number); 
 
     // getters & setters
         int getNumerator();
