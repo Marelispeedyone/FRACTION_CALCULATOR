@@ -24,9 +24,7 @@ class Fraction{
         // Only if numerator > denominator
         std::string mixedFormat() const;
 
-        Fraction parser(std::string expression);
-
-        void display(std::ostream &flux) const;
+        Fraction parserExpression(std::string expression);
 
         Fraction& operator+=(Fraction fraction);
         Fraction& operator+=(int number);

@@ -119,6 +119,16 @@ Fraction& Fraction::operator*=(Fraction fraction){
 
     m_numerator *= fraction.getNumerator();
     m_denominator *= fraction.getDenominator();
+    simplify();
+
+    return *this ;
+
+}
+
+Fraction& Fraction::operator*=(int number){
+
+    m_numerator *= number ;
+    simplify();
 
     return *this ;
 
@@ -236,16 +246,11 @@ void Fraction::setFraction(int numerator, int denominator){
 
 }
 
-void Fraction::display(ostream &flux) const{
-
-    flux << " Normal format :" <<normalFormat() << " Mixed format :" <<mixedFormat() << endl;
-
-}
-
 
 ostream& operator<<(ostream &flux, Fraction fraction){
 
-    fraction.display(flux);
+    flux << "Normal format :" <<fraction.normalFormat() << " Mixed format :" <<fraction.mixedFormat() << endl ;
 
     return flux ;
 }
+
