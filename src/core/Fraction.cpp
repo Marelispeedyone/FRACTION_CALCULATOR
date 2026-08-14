@@ -93,51 +93,123 @@ string Fraction::mixedFormat() const{
 
 }
 
-void Fraction::operator+=(Fraction fraction){
+Fraction& Fraction::operator+=(Fraction fraction){
 
     // a/b + c/d = (a.d + bc)/bd
     m_numerator = m_numerator*fraction.getDenominator() + m_denominator*fraction.getNumerator() ;
 
     m_denominator *= fraction.getDenominator();
 
+    return *this ;
+
 }
 
-void Fraction::operator-=(Fraction fraction){
+Fraction& Fraction::operator-=(Fraction fraction){
 
     // a/b - c/d = (a.d - bc)/bd
     m_numerator = m_numerator*fraction.getDenominator() - m_denominator*fraction.getNumerator() ;
     
     m_denominator *= fraction.getDenominator();
 
+    return *this ;
+
 }
 
-void Fraction::operator*=(Fraction fraction){
+Fraction& Fraction::operator*=(Fraction fraction){
 
     m_numerator *= fraction.getNumerator();
     m_denominator *= fraction.getDenominator();
 
+    return *this ;
+
 }
 
-void Fraction::operator/=(Fraction fraction){
+Fraction& Fraction::operator/=(Fraction fraction){
 
     // invert and multiply
 
     m_numerator *= fraction.getDenominator();
     m_denominator *= fraction.getNumerator();
 
-}
-
-
-void Fraction::operator/=(int number){
-
-
+    return *this ;
 
 }
 
-void Fraction::operator=(Fraction fraction){
+
+Fraction& Fraction::operator/=(int number){
+
+    return *this ;
+
+}
+
+Fraction& Fraction::operator=(Fraction fraction){
 
     m_numerator = fraction.getNumerator();
     m_denominator = fraction.getDenominator();
+
+    return *this ;
+
+}
+
+Fraction operator+(Fraction fraction1, Fraction fraction2) {
+
+    Fraction result = fraction1 ;
+    
+    return result+= fraction2 ;
+
+}
+
+Fraction operator-(Fraction fraction1, Fraction fraction2) {
+
+    Fraction result = fraction1 ;
+    
+    return result-= fraction2 ;
+
+}
+
+Fraction operator*(Fraction fraction1, Fraction fraction2) {
+
+    Fraction result = fraction1 ;
+    
+    return result*= fraction2 ;
+
+}
+
+Fraction operator/(Fraction fraction1, Fraction fraction2) {
+
+    Fraction result = fraction1 ;
+    
+    return result/= fraction2 ;
+
+}
+
+bool operator==(Fraction fraction1, Fraction fraction2){
+
+    return fraction1.toDouble()== fraction2.toDouble();
+
+}
+
+bool operator<(Fraction fraction1, Fraction fraction2){
+
+    return fraction1.toDouble()< fraction2.toDouble();
+
+}
+
+bool operator>(Fraction fraction1, Fraction fraction2){
+
+    return fraction1.toDouble()> fraction2.toDouble();
+
+}
+
+bool operator<=(Fraction fraction1, Fraction fraction2){
+
+    return fraction1.toDouble()<= fraction2.toDouble();
+
+}
+
+bool operator>=(Fraction fraction1, Fraction fraction2){
+
+    return fraction1.toDouble()>= fraction2.toDouble();
 
 }
 
@@ -164,3 +236,16 @@ void Fraction::setFraction(int numerator, int denominator){
 
 }
 
+void Fraction::display(ostream &flux) const{
+
+    flux << " Normal format :" <<normalFormat() << " Mixed format :" <<mixedFormat() << endl;
+
+}
+
+
+ostream& operator<<(ostream &flux, Fraction fraction){
+
+    fraction.display(flux);
+
+    return flux ;
+}

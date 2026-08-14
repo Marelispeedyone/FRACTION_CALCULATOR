@@ -26,16 +26,18 @@ class Fraction{
 
         Fraction parser(std::string expression);
 
-        void operator+=(Fraction fraction);
-        void operator+=(int number);
-        void operator-=(Fraction fraction);
-        void operator-=(int number);
-        void operator*=(Fraction fraction);
-        void operator*=(int number);
-        void operator/=(Fraction fraction);
-        void operator/=(int number);
-        void operator=(Fraction fraction); //
-        void operator=(int number); 
+        void display(std::ostream &flux) const;
+
+        Fraction& operator+=(Fraction fraction);
+        Fraction& operator+=(int number);
+        Fraction& operator-=(Fraction fraction);
+        Fraction& operator-=(int number);
+        Fraction& operator*=(Fraction fraction);
+        Fraction& operator*=(int number);
+        Fraction& operator/=(Fraction fraction);
+        Fraction& operator/=(int number);
+        Fraction& operator=(Fraction fraction); // Copy operator
+        Fraction& operator=(int number); 
 
     // getters & setters
         int getNumerator();
@@ -51,6 +53,26 @@ class Fraction{
         int m_numerator ;
         int m_denominator ;
 };
+
+// Arithmetics operators
+
+inline Fraction operator+(Fraction fraction1, Fraction fraction2) ;
+inline Fraction operator-(Fraction fraction1, Fraction fraction2) ;
+inline Fraction operator*(Fraction fraction1, Fraction fraction2) ;
+inline Fraction operator/(Fraction fraction1, Fraction fraction2) ;
+
+// Comparison operators
+
+inline bool operator==(Fraction fraction1, Fraction fraction2);
+inline bool operator<(Fraction fraction1, Fraction fraction2);
+inline bool operator>(Fraction fraction1, Fraction fraction2);
+inline bool operator>=(Fraction fraction1, Fraction fraction2);
+inline bool operator<=(Fraction fraction1, Fraction fraction2);
+
+
+
+
+// Output operator
 
 std::ostream& operator<<(std::ostream &flux, Fraction fraction);
 
