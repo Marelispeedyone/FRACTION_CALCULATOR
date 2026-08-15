@@ -44,7 +44,6 @@ Fraction parserExpression (string expression){
     while(fractions[i] == null && i < fractions.size()){
         i++;
     }
-    fractions[i].simplify();
 
     return fractions[i] ;
 }
@@ -59,28 +58,41 @@ bool isNumber(std::string word){
 Fraction convertStringToFraction(std::string word){
 
     int numerator = 0, denominator = 1 ;
-    int sign = 1; // Default : positive sign 
+    int sign_up = 1, sign_down = 1; // Default : positive sign 
 
     for(size_t i=0 ; i < word.length(); i++){
 
         if(word[i] == '/'){
             
-            denominator= word[i+1] -'0';
-            for( size_t j = i+2 ; j < word.length() ; j++  )denominator = denominator*10 +( word[j]-'0' );
+            if(word[i+1] == '-') {
+
+                sign_down *=-1 ;
+                denominator = word[i+2] -'0';
+                for( size_t j = i+3 ; j < word.length() ; j++ ) denominator = denominator*10 +( word[j]-'0' );
+                
+            }
+            
+            else {
+
+                denominator = word[i+1] -'0';
+                for( size_t j = i+2 ; j < word.length() ; j++ ) denominator = denominator*10 +( word[j]-'0' );
+            }
             break ;
             
         }
 
-        else if(word[i] == '-') sign *= -1 ;
+        else if(word[i] == '-') sign_up*= (-1) ;
         // ASCII offset method
         else{
 
             numerator = numerator*10 + (word[i]-'0') ;
         }
     }
+    numerator *= sign_up ;
+    denominator *= sign_down ;
     Fraction fraction(numerator, denominator) ;
 
-    return fraction*= sign ;
+    return fraction ;
 }
 
 void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fractions){
@@ -107,12 +119,16 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
                 
                 case '*':
                     fractions[i] = fractions[i-left] * fractions[i+right];
+                    fractions[i].normalize();
+                    fractions[i].simplify();
                     fractions[i-left]= fractions[i+right] = 0 ;
                     operators[i] ='.' ;
                     break ;
                 
                 case'/':
                     fractions[i] = fractions[i-left] / fractions[i+right];
+                    fractions[i].normalize();
+                    fractions[i].simplify();
                     fractions[i-left]= fractions[i+right] = 0 ;
                     operators[i] = '.' ;
                     break ;
@@ -144,12 +160,16 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
                 
                 case '+':
                     fractions[i] = fractions[i-left] + fractions[i+right];
+                    fractions[i].normalize();
+                    fractions[i].simplify();
                     fractions[i-left]= fractions[i+right] = 0 ;
                     operators[i] = '.' ;
                     break ;
                 
                 case'-':
                     fractions[i] = fractions[i-left] - fractions[i+right];
+                    fractions[i].normalize();
+                    fractions[i].simplify();
                     fractions[i-left]= fractions[i+right] = 0 ;
                     operators[i] = '.' ;
                     break ;

@@ -45,24 +45,19 @@ void Fraction::simplify(){
     int num = m_numerator ;
     if(m_numerator < 0 ) num *= -1 ;
 
-    int gcd = GCD(m_numerator, m_denominator);
+    int gcd = GCD(num, m_denominator);
 
     num /= gcd ;
-    m_numerator = num ;
+
+    if (m_numerator < 0) m_numerator = num *= -1 ;
+    else m_numerator = num ;
+    
     m_denominator /= gcd ;
 
 }
 
 void Fraction::normalize(){
 
-    // Cas 1 : m_denominator < 0 and m_numerator < 0
-
-    if( m_denominator < 0 && m_numerator < 0){
-        m_numerator *= -1 ;
-        m_denominator *= -1 ;
-    }
-
-    // Case 2 : m_denominator < 0
 
     if( m_denominator < 0 ){
 
@@ -223,7 +218,7 @@ Fraction operator*(Fraction  const& fraction1, Fraction const& fraction2) {
 
 }
 
-Fraction operator/(Fraction fraction1, Fraction fraction2) {
+Fraction operator/(Fraction const& fraction1, Fraction const& fraction2) {
 
     Fraction result = fraction1 ;
     
@@ -241,7 +236,7 @@ bool operator==(Fraction const& fraction1, Fraction const& fraction2){
 
 }
 
-bool operator!=(Fraction fraction1, Fraction fraction2){
+bool operator!=(Fraction const& fraction1, Fraction const& fraction2){
 
     return fraction1.toDouble()!= fraction2.toDouble();
 }
