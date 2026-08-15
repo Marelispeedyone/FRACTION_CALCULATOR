@@ -187,7 +187,7 @@ Fraction& Fraction::operator=(int number){
 
 }
 
-Fraction operator+(Fraction fraction1, Fraction fraction2) {
+Fraction operator+(Fraction const& fraction1, Fraction const& fraction2) {
 
     Fraction result = fraction1 ;
 
@@ -199,7 +199,7 @@ Fraction operator+(Fraction fraction1, Fraction fraction2) {
 
 }
 
-Fraction operator-(Fraction fraction1, Fraction fraction2) {
+Fraction operator-(Fraction const& fraction1, Fraction const& fraction2) {
 
     Fraction result = fraction1 ;
 
@@ -211,7 +211,7 @@ Fraction operator-(Fraction fraction1, Fraction fraction2) {
 
 }
 
-Fraction operator*(Fraction fraction1, Fraction fraction2) {
+Fraction operator*(Fraction  const& fraction1, Fraction const& fraction2) {
 
     Fraction result = fraction1 ;
     
@@ -235,7 +235,7 @@ Fraction operator/(Fraction fraction1, Fraction fraction2) {
 
 }
 
-bool operator==(Fraction fraction1, Fraction fraction2){
+bool operator==(Fraction const& fraction1, Fraction const& fraction2){
 
     return fraction1.toDouble()== fraction2.toDouble();
 
@@ -246,25 +246,25 @@ bool operator!=(Fraction fraction1, Fraction fraction2){
     return fraction1.toDouble()!= fraction2.toDouble();
 }
 
-bool operator<(Fraction fraction1, Fraction fraction2){
+bool operator<(Fraction const& fraction1, Fraction const& fraction2){
 
     return fraction1.toDouble()< fraction2.toDouble();
 
 }
 
-bool operator>(Fraction fraction1, Fraction fraction2){
+bool operator>(Fraction const& fraction1, Fraction const& fraction2){
 
     return fraction1.toDouble()> fraction2.toDouble();
 
 }
 
-bool operator<=(Fraction fraction1, Fraction fraction2){
+bool operator<=(Fraction const& fraction1, Fraction const& fraction2){
 
     return fraction1.toDouble()<= fraction2.toDouble();
 
 }
 
-bool operator>=(Fraction fraction1, Fraction fraction2){
+bool operator>=(Fraction const&  fraction1, Fraction const& fraction2){
 
     return fraction1.toDouble()>= fraction2.toDouble();
 
@@ -296,7 +296,7 @@ void Fraction::setFraction(int numerator, int denominator){
 }
 
 
-ostream& operator<<(ostream &flux, Fraction fraction){
+ostream& operator<<(ostream &flux, Fraction const& fraction){
 
     if(fraction.normalFormat() == fraction.mixedFormat()) flux << fraction.normalFormat() << endl ;
 

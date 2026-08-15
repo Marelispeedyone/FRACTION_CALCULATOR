@@ -53,25 +53,25 @@ class Fraction{
 
 // Arithmetics operators
 
-Fraction operator+(Fraction fraction1, Fraction fraction2) ;
-Fraction operator-(Fraction fraction1, Fraction fraction2) ;
-Fraction operator*(Fraction fraction1, Fraction fraction2) ;
-Fraction operator/(Fraction fraction1, Fraction fraction2) ;
+Fraction operator+(Fraction const& fraction1, Fraction const& fraction2) ;
+Fraction operator-(Fraction const& fraction1, Fraction const& fraction2) ;
+Fraction operator*(Fraction const& fraction1, Fraction const& fraction2) ;
+Fraction operator/(Fraction const& fraction1, Fraction const& fraction2) ;
 
 // Comparison operators
 
-bool operator==(Fraction fraction1, Fraction fraction2);
-bool operator!=(Fraction fraction1, Fraction fraction2);
-bool operator<(Fraction fraction1, Fraction fraction2);
-bool operator>(Fraction fraction1, Fraction fraction2);
-bool operator>=(Fraction fraction1, Fraction fraction2);
-bool operator<=(Fraction fraction1, Fraction fraction2);
+bool operator==(Fraction const&  fraction1, Fraction const& fraction2);
+bool operator!=(Fraction const& fraction1, Fraction const& fraction2);
+bool operator<(Fraction const& fraction1, Fraction const&fraction2);
+bool operator>(Fraction const& fraction1, Fraction const& fraction2);
+bool operator>=(Fraction  const& fraction1, Fraction const& fraction2);
+bool operator<=(Fraction const& fraction1, Fraction const& fraction2);
 
 
 
 
 // Output operator
 
-std::ostream& operator<<(std::ostream &flux, Fraction fraction);
+std::ostream& operator<<(std::ostream &flux, Fraction const& fraction);
 
 #endif  // FRACTION

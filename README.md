@@ -4,15 +4,20 @@
 
 ## Table of contents
 
-1. [About](#about)
-2. [Features](#-features)
-3. [Prerequisites](#-prerequisites)
-4. [Quick Start](#-quick-start)
-5. [Preview](#-preview)
-6. [Usage](#-usage)
-7. [What i learned](#-what-i-learned)
-8. [Future improvements](#-future-improvements)
-9. [License & author](#-license-&-author)
+- [FRACTION\_CALCULATOR](#fraction_calculator)
+  - [Table of contents](#table-of-contents)
+- [About](#about)
+    - [What it does](#what-it-does)
+    - [Who it’s for](#who-its-for)
+    - [Why it stands out](#why-it-stands-out)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#quick-start)
+- [Preview](#preview)
+- [Usage](#usage)
+- [What i learned](#what-i-learned)
+- [Future improvements](#future-improvements)
+- [License and author](#license-and-author)
 
 # About
 
@@ -36,7 +41,7 @@ This project goes beyond a basic calculator. It features a **lexer/parser** that
 # Features
 
 
-- **Arithmetic operations** : +, -, *, /
+- **Arithmetic operations** : $+$, $-$, $\times$, $/$
 - **Comparison** : $=$, $<$, $>$, $\leq$, $\geq$, $\neq$
 - **Simplification** : automatic reduction using GCD (Euclidean algorithm)
 - **Mixed format** : displays $7/3$ as $2+1/3$
@@ -51,3 +56,12 @@ This project goes beyond a basic calculator. It features a **lexer/parser** that
 
 # Quick Start
 
+# Preview
+
+# Usage
+
+# What i learned
+
+# Future improvements
+
+# License and author
