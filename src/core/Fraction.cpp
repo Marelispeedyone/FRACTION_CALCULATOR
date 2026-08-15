@@ -3,12 +3,14 @@
 #include<iostream>
 #include<string>
 
+#include"../../include/core/Parsing.h"
+
 using namespace std;
 
 int GCD (int a, int b){
 
     if(b == 0 ) return a ;
-    else return (b, a % b ) ;
+    else return GCD(b, a % b ) ;
 
 }
 
@@ -79,9 +81,13 @@ double Fraction::toDouble() const{
 
 }
 
+
+
 string Fraction::normalFormat() const{
 
-    return to_string(m_numerator)+"/"+to_string(m_denominator);
+    
+    if (m_denominator != 1 ) return to_string(m_numerator)+"/"+to_string(m_denominator);
+    else return to_string(m_numerator);
 
 }
 
@@ -89,6 +95,10 @@ string Fraction::mixedFormat() const{
 
     // a/b -> a div b + (a mod b)/b
     
+    if ( m_denominator == 1 ) return to_string(m_numerator);
+
+    if(m_numerator/m_denominator == 0 ) return to_string(m_numerator)+"/"+to_string(m_denominator); 
+
     return to_string(m_numerator/m_denominator)+"+"+to_string(m_numerator%m_denominator)+"/"+to_string(m_denominator);
 
 }
@@ -100,6 +110,8 @@ Fraction& Fraction::operator+=(Fraction fraction){
 
     m_denominator *= fraction.getDenominator();
 
+    simplify();
+
     return *this ;
 
 }
@@ -110,6 +122,8 @@ Fraction& Fraction::operator-=(Fraction fraction){
     m_numerator = m_numerator*fraction.getDenominator() - m_denominator*fraction.getNumerator() ;
     
     m_denominator *= fraction.getDenominator();
+
+    simplify();
 
     return *this ;
 
@@ -141,6 +155,8 @@ Fraction& Fraction::operator/=(Fraction fraction){
     m_numerator *= fraction.getDenominator();
     m_denominator *= fraction.getNumerator();
 
+    simplify();
+
     return *this ;
 
 }
@@ -164,16 +180,24 @@ Fraction& Fraction::operator=(Fraction fraction){
 Fraction operator+(Fraction fraction1, Fraction fraction2) {
 
     Fraction result = fraction1 ;
-    
-    return result+= fraction2 ;
+
+    result+= fraction2 ;
+
+    result.simplify();
+
+    return result ;
 
 }
 
 Fraction operator-(Fraction fraction1, Fraction fraction2) {
 
     Fraction result = fraction1 ;
-    
-    return result-= fraction2 ;
+
+    result-= fraction2 ;
+
+    result.simplify();
+
+    return result ;
 
 }
 
@@ -181,7 +205,11 @@ Fraction operator*(Fraction fraction1, Fraction fraction2) {
 
     Fraction result = fraction1 ;
     
-    return result*= fraction2 ;
+    result*= fraction2 ;
+
+    result.simplify();
+
+    return result ;
 
 }
 
@@ -189,7 +217,11 @@ Fraction operator/(Fraction fraction1, Fraction fraction2) {
 
     Fraction result = fraction1 ;
     
-    return result/= fraction2 ;
+    result/= fraction2 ;
+
+    result.simplify();
+
+    return result ;
 
 }
 
@@ -197,6 +229,11 @@ bool operator==(Fraction fraction1, Fraction fraction2){
 
     return fraction1.toDouble()== fraction2.toDouble();
 
+}
+
+bool operator!=(Fraction fraction1, Fraction fraction2){
+
+    return fraction1.toDouble()!= fraction2.toDouble();
 }
 
 bool operator<(Fraction fraction1, Fraction fraction2){
@@ -237,19 +274,23 @@ int Fraction::getDenominator(){
 void Fraction::setFraction(int numerator){
 
     m_numerator = numerator ;
+    simplify();
 }
 
 void Fraction::setFraction(int numerator, int denominator){
 
     m_numerator = numerator ;
     m_denominator = denominator ;
+    simplify();
 
 }
 
 
 ostream& operator<<(ostream &flux, Fraction fraction){
 
-    flux << "Normal format :" <<fraction.normalFormat() << " Mixed format :" <<fraction.mixedFormat() << endl ;
+    if(fraction.normalFormat() == fraction.mixedFormat()) flux <<"Fraction : "<< fraction.normalFormat() << endl ;
+
+    else flux << "Normal format :" <<fraction.normalFormat() << " Mixed format :" <<fraction.mixedFormat() << endl ;
 
     return flux ;
 }

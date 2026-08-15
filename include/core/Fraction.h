@@ -24,8 +24,6 @@ class Fraction{
         // Only if numerator > denominator
         std::string mixedFormat() const;
 
-        Fraction parserExpression(std::string expression);
-
         Fraction& operator+=(Fraction fraction);
         Fraction& operator+=(int number);
         Fraction& operator-=(Fraction fraction);
@@ -62,6 +60,7 @@ inline Fraction operator/(Fraction fraction1, Fraction fraction2) ;
 // Comparison operators
 
 inline bool operator==(Fraction fraction1, Fraction fraction2);
+inline bool operator!=(Fraction fraction1, Fraction fraction2);
 inline bool operator<(Fraction fraction1, Fraction fraction2);
 inline bool operator>(Fraction fraction1, Fraction fraction2);
 inline bool operator>=(Fraction fraction1, Fraction fraction2);

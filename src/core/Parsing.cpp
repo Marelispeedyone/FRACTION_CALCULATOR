@@ -12,7 +12,7 @@ using namespace std ;
 
 Fraction const null(0,1);
 
-Fraction parserExpression (string expression){
+Fraction parser (string expression){
 
     Fraction result = null ;
 

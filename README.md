@@ -36,8 +36,8 @@ This project goes beyond a basic calculator. It features a **lexer/parser** that
 # Features
 
 
-- **Arithmetic operations** : addition, subtraction, multiplication, division
-- **Comparison** : equality, less than, greater than
+- **Arithmetic operations** : +, -, *, /
+- **Comparison** : $=$, $<$, $>$, $\leq$, $\geq$, $\neq$
 - **Simplification** : automatic reduction using GCD (Euclidean algorithm)
 - **Mixed format** : displays $7/3$ as $2+1/3$
 - **Expression parser** : handles natural input like $1/2 + 3/4$
