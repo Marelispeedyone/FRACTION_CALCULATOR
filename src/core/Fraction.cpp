@@ -77,7 +77,7 @@ void Fraction::normalize(){
 
 double Fraction::toDouble() const{
 
-    return (double)(m_numerator/m_denominator);
+    return (double)(((double)m_numerator)/((double)m_denominator));
 
 }
 
@@ -99,7 +99,7 @@ string Fraction::mixedFormat() const{
 
     if(m_numerator/m_denominator == 0 ) return to_string(m_numerator)+"/"+to_string(m_denominator); 
 
-    return to_string(m_numerator/m_denominator)+"+"+to_string(m_numerator%m_denominator)+"/"+to_string(m_denominator);
+    return to_string(m_numerator/m_denominator)+" + "+to_string(m_numerator%m_denominator)+"/"+to_string(m_denominator);
 
 }
 
@@ -128,6 +128,7 @@ Fraction& Fraction::operator-=(Fraction fraction){
     return *this ;
 
 }
+
 
 Fraction& Fraction::operator*=(Fraction fraction){
 
@@ -172,6 +173,15 @@ Fraction& Fraction::operator=(Fraction fraction){
 
     m_numerator = fraction.getNumerator();
     m_denominator = fraction.getDenominator();
+
+    return *this ;
+
+}
+
+Fraction& Fraction::operator=(int number){
+
+    m_numerator = number;
+    m_denominator = 1;
 
     return *this ;
 
@@ -288,9 +298,9 @@ void Fraction::setFraction(int numerator, int denominator){
 
 ostream& operator<<(ostream &flux, Fraction fraction){
 
-    if(fraction.normalFormat() == fraction.mixedFormat()) flux <<"Fraction : "<< fraction.normalFormat() << endl ;
+    if(fraction.normalFormat() == fraction.mixedFormat()) flux << fraction.normalFormat() << endl ;
 
-    else flux << "Normal format :" <<fraction.normalFormat() << " Mixed format :" <<fraction.mixedFormat() << endl ;
+    else flux << "Normal format :" <<fraction.normalFormat() << "\nMixed format :" <<fraction.mixedFormat() << endl ;
 
     return flux ;
 }

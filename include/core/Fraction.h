@@ -28,6 +28,7 @@ class Fraction{
         Fraction& operator+=(int number);
         Fraction& operator-=(Fraction fraction);
         Fraction& operator-=(int number);
+        Fraction& operator-=(double number);
         Fraction& operator*=(Fraction fraction);
         Fraction& operator*=(int number);
         Fraction& operator/=(Fraction fraction);
@@ -52,19 +53,19 @@ class Fraction{
 
 // Arithmetics operators
 
-inline Fraction operator+(Fraction fraction1, Fraction fraction2) ;
-inline Fraction operator-(Fraction fraction1, Fraction fraction2) ;
-inline Fraction operator*(Fraction fraction1, Fraction fraction2) ;
-inline Fraction operator/(Fraction fraction1, Fraction fraction2) ;
+Fraction operator+(Fraction fraction1, Fraction fraction2) ;
+Fraction operator-(Fraction fraction1, Fraction fraction2) ;
+Fraction operator*(Fraction fraction1, Fraction fraction2) ;
+Fraction operator/(Fraction fraction1, Fraction fraction2) ;
 
 // Comparison operators
 
-inline bool operator==(Fraction fraction1, Fraction fraction2);
-inline bool operator!=(Fraction fraction1, Fraction fraction2);
-inline bool operator<(Fraction fraction1, Fraction fraction2);
-inline bool operator>(Fraction fraction1, Fraction fraction2);
-inline bool operator>=(Fraction fraction1, Fraction fraction2);
-inline bool operator<=(Fraction fraction1, Fraction fraction2);
+bool operator==(Fraction fraction1, Fraction fraction2);
+bool operator!=(Fraction fraction1, Fraction fraction2);
+bool operator<(Fraction fraction1, Fraction fraction2);
+bool operator>(Fraction fraction1, Fraction fraction2);
+bool operator>=(Fraction fraction1, Fraction fraction2);
+bool operator<=(Fraction fraction1, Fraction fraction2);
 
 
 

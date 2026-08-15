@@ -12,9 +12,7 @@ using namespace std ;
 
 Fraction const null(0,1);
 
-Fraction parser (string expression){
-
-    Fraction result = null ;
+Fraction parserExpression (string expression){
 
     vector<char> operators;
     vector<Fraction> fractions;
@@ -43,9 +41,10 @@ Fraction parser (string expression){
 
     priorityCalculator(operators, fractions);
     size_t i = 0 ;
-    while(fractions[i] == 0 && i < fractions.size()){
+    while(fractions[i] == null && i < fractions.size()){
         i++;
     }
+    fractions[i].simplify();
 
     return fractions[i] ;
 }
@@ -88,7 +87,7 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
 
     // first step
     for( size_t i = 1; i < operators.size(); i++){
-        
+    
         size_t left = 1 ;
         size_t right = 1 ;
 
@@ -99,7 +98,7 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
             while(fractions[i-left] == null){
                 left++ ;
             }
-            while(fractions[i-right] == null){
+            while(fractions[i+right] == null){
                 right++ ;
             }
 
@@ -109,11 +108,13 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
                 case '*':
                     fractions[i] = fractions[i-left] * fractions[i+right];
                     fractions[i-left]= fractions[i+right] = 0 ;
+                    operators[i] ='.' ;
                     break ;
                 
                 case'/':
                     fractions[i] = fractions[i-left] / fractions[i+right];
                     fractions[i-left]= fractions[i+right] = 0 ;
+                    operators[i] = '.' ;
                     break ;
 
                 default:
@@ -125,9 +126,8 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
     }
     
     // second step
-
     for( size_t i = 1; i < operators.size(); i++){
-        
+    
         size_t left = 1 ;
         size_t right = 1 ;
     
@@ -136,7 +136,7 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
             while(fractions[i-left] == null){
                 left++ ;
             }
-            while(fractions[i-right] == null){
+            while(fractions[i+right] == null){
                 right++ ;
             }
 
@@ -145,11 +145,13 @@ void priorityCalculator(std::vector<char> &operators, std::vector<Fraction> &fra
                 case '+':
                     fractions[i] = fractions[i-left] + fractions[i+right];
                     fractions[i-left]= fractions[i+right] = 0 ;
+                    operators[i] = '.' ;
                     break ;
                 
                 case'-':
                     fractions[i] = fractions[i-left] - fractions[i+right];
                     fractions[i-left]= fractions[i+right] = 0 ;
+                    operators[i] = '.' ;
                     break ;
 
                 default:
