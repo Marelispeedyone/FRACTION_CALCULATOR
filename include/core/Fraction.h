@@ -11,9 +11,7 @@ class Fraction{
 
     public :
 
-        Fraction(); // default constructor
-        Fraction(int numerator);
-        Fraction(int numerator, int denominator);
+        Fraction(int numerator = 0, int denominator = 1);
 
         bool denominatorIsNull();
         void simplify();

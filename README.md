@@ -13,6 +13,9 @@
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
+    - [Method 1 : With Make (Recommended)](#method-1--with-make-recommended)
+    - [Method 2 : Direct command](#method-2--direct-command)
+    - [Run the program](#run-the-program)
 - [Preview](#preview)
 - [Usage](#usage)
 - [What i learned](#what-i-learned)
@@ -26,9 +29,9 @@ Fractions are everywhere. Whether you're splitting a pizza, adjusting a recipe, 
 **Fraction Calculator** solves this by providing a powerful yet simple command-line tool.
 
 ### What it does
-- [ ] **Simplifies** fractions automatically (using GCD)
-- [ ] **Calculates** expressions with `+`, `-`, `*`, `/`  
-- [ ] **Parses** natural input like `1/2 + 3/4` and returns a clean result
+- **Simplifies** fractions automatically (using GCD)
+- **Calculates** expressions with `+`, `-`, `*`, `/`  
+- **Parses** natural input like `1/2 + 3/4` and returns a clean result
 
 ### Who it’s for
 - **Anyone** who needs a quick and reliable fraction calculator
@@ -56,12 +59,77 @@ This project goes beyond a basic calculator. It features a **lexer/parser** that
 
 # Quick Start
 
+### Method 1 : With Make (Recommended)
+
+```bash
+make
+```
+
+### Method 2 : Direct command
+
+```bash
+g++ -std=c++17 -Wall -Wextra -I include/ -o main.cpp src/core/Fraction.cpp src/core/Parsing.cpp
+```
+
+### Run the program
+
+```bash
+./programme.exe
+```
+
 # Preview
+
+```text
+
+> 3/4 + 1/2
+  = 5/4
+
+> 7/3
+  = 2 + 1/3
+
+> 1/2 * 2
+  = 1/1
+
+> 1/0
+
+```
 
 # Usage
 
+1. Launch the program with `./main`.
+2. Type a **space-separated** expression (e.g., `1/2 + 3/4`).
+3. Press `Enter`.
+4. The result is displayed in simplified and mixed format.
+5. Type `quit` or press `Enter` on an empty line to exit.
+
+**Supported formats :**
+
+| Input type | Examples |
+| :--- | :--- |
+| Fractions | `3/4`, `-5/2`, `12/-34` |
+| Whole numbers | `5`, `-3` |
+| Operators | `+`, `-`, `*`, `/` |
+| Expressions | `1/3 / 4/5`, `-3/-9 * -1`|
+
 # What i learned
+
+- **Operator overloading** : implementing `+`, `-`, `*`, `/` and comparison operators for a custom `Fraction` class.
+- **Algorithm design** : writing an iterative digit parser (Horner's method) to convert strings into integers.
+- **Exception safety** : using `std::invalid_argument` to prevent invalid states (e.g., zero denominator).
+- **Parser architecture** : designing an **index-alignment strategy** using placeholder markers to handle operator precedence (`*` and `/` before `+` and `-`) without dynamic vector deletion. This approach avoids common pitfalls like out-of-range errors and keeps the code robust.
+- **Project structure** : organizing the code with a clean separation between `core/`, `parser/`, and `app/` layers, following the principle of separation of concerns.
 
 # Future improvements
 
+- [ ] Support for parentheses (e.g., `(1/2 + 1/3) * 2`)
+- [ ] Add a `history` command to review the last 10 calculations
+- [ ] Implement a variable `ans` to reuse the previous result
+- [ ] Add unit tests with Google Test
+- [ ] Export calculation history to a `.csv` file
+
 # License and author
+
+Distributed under the MIT License. See `LICENSE` for details.
+
+**Author** : Marc-Eliel Ouattara  
+**GitHub** : [Marelispeedyone](https://github.com/Marelispeedyone)

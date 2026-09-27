@@ -14,15 +14,6 @@ int GCD (int a, int b){
 
 }
 
-Fraction::Fraction(): m_numerator(1), m_denominator(1){
-
-}
-
-Fraction::Fraction(int numerator): m_numerator(numerator), m_denominator(1){
-
-
-}
-
 Fraction::Fraction(int numerator, int denominator): m_numerator(numerator), m_denominator(denominator){
 
     if ( numerator != 0){
